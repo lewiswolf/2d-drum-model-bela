@@ -1,0 +1,14 @@
+/unused
+/image-projects
+todo.md
+
+# dependencies
+node_modules
+
+# production
+build
+bela/bela
+
+# misc
+/.vscode
+.DS_Store
