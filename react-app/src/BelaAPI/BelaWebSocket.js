@@ -13,9 +13,6 @@ export default class BelaWebSocket {
 		this.connectInterval = 1500;
 		this.url = "ws://" + this.ip + ":" + this.port + "/" + this.address;
 
-		// handles connection failure
-		this.reconnectionAttempts = 0;
-
 		this.connect(this.url);
 	}
 
@@ -31,25 +28,18 @@ export default class BelaWebSocket {
 	}
 
 	reconnect(connectInterval) {
-		// added a counter to stop Bela always attempting to reconnect
-		if (this.reconnectionAttempts < 10) {
-			this.reconnectionAttempts += 1
-			console.log(this.reconnectionAttempts)
-			setTimeout(() => {
-				console.log("Retrying connection in %d ms\n", connectInterval);
-				try {
-					this.ws = new WebSocket(this.ws.url);
-				} catch (e) {
-				}
-				this.ws.parent = this;
-				this.ws.onopen = this.ws.parent.onOpen;
-				this.ws.onclose = this.ws.parent.onClose;
-				this.ws.onerror = this.ws.parent.onError;
-				this.ws.onmessage = this.ws.parent.onMessage;
-			}, connectInterval)
-		} else {
-			console.log('Bela failed to connect, please refresh your browser to try again.')
-		}
+		setTimeout(() => {
+			console.log("Retrying connection in %d ms\n", connectInterval);
+			try {
+				this.ws = new WebSocket(this.ws.url);
+			} catch (e) {
+			}
+			this.ws.parent = this;
+			this.ws.onopen = this.ws.parent.onOpen;
+			this.ws.onclose = this.ws.parent.onClose;
+			this.ws.onerror = this.ws.parent.onError;
+			this.ws.onmessage = this.ws.parent.onMessage;
+		}, connectInterval)
 	}
 
 	onClose(event) {
