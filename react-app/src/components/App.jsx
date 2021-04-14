@@ -23,13 +23,14 @@ export default class App extends React.Component {
 	}
 
 	render() {
+		// this.state.belaLoaded && Bela.sendBuffer(0, 'float', ['1', '1', '1', '1'])
 		return (
 			<React.Fragment>
 				<Head description='2-dimensional physically modelled drum running on Bela' />
 				<p style={{ display: !this.state.belaLoaded ? 'block' : 'none' }}>
 					There is no Bela connected... 🧑‍💻
 				</p>
-				<main style={{ display: this.state.belaLoaded ? 'block' : 'none' }}></main>
+				<main style={{ display: this.state.belaLoaded ? 'block' : 'none' }}>This is where the GUI goes.</main>
 			</React.Fragment>
 		)
 	}
