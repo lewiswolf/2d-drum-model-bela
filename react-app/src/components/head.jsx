@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 
 export default class Head extends Component {
-	static defaultProps = {
-		description: '',
-	}
-
 	constructor(props) {
 		super(props)
 		this.state = {
 			title: '',
+			description: '',
+			themeColor: '',
 			favicon: '',
 			appleIcon: '',
-			themeColor: '',
 		}
 	}
 
@@ -23,9 +20,10 @@ export default class Head extends Component {
 			.then((json) => {
 				this.setState({
 					title: json.name,
+					description: json.description,
+					themeColor: json.theme_color,
 					favicon: json.icons[0].src,
 					appleIcon: json.icons[1].src,
-					themeColor: json.theme_color,
 				})
 			})
 	}
@@ -38,7 +36,7 @@ export default class Head extends Component {
 				<meta http-equiv='X-UA-Compatible' content='IE=edge' />
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<meta name='theme-color' content={this.state.themeColor} />
-				<meta name='description' content={this.props.description} />
+				<meta name='description' content={this.state.description} />
 				<link rel='manifest' href={`${process.env.PUBLIC_URL}/manifest.json`} />
 				<link rel='apple-touch-icon' href={`${process.env.PUBLIC_URL}/${this.state.appleIcon}`} />
 				<link rel='icon' href={`${process.env.PUBLIC_URL}/${this.state.favicon}`} />

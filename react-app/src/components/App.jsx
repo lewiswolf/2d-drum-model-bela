@@ -26,7 +26,7 @@ export default class App extends React.Component {
 		// this.state.belaLoaded && Bela.sendBuffer(0, 'float', ['1', '1', '1', '1'])
 		return (
 			<React.Fragment>
-				<Head description='2-dimensional physically modelled drum running on Bela' />
+				<Head />
 				<p style={{ display: !this.state.belaLoaded ? 'block' : 'none' }}>
 					There is no Bela connected... 🧑‍💻
 				</p>
