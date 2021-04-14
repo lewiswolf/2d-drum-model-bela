@@ -3,6 +3,10 @@ import { findDOMNode } from 'react-dom'
 import P5Wrapper from 'react-p5-wrapper'
 
 export default class p5 extends PureComponent {
+	static defaultProps = {
+		src: '',
+	}
+
 	constructor(props) {
 		super(props)
 		this.state = {
