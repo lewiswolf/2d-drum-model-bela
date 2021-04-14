@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 
 export default class Head extends Component {
+	static defaultProps = {
+		description: '',
+	}
+
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -12,6 +16,7 @@ export default class Head extends Component {
 		}
 	}
 
+	// load metadata from the manifest.json
 	componentDidMount() {
 		fetch(`${process.env.PUBLIC_URL}/manifest.json`)
 			.then((res) => res.json())
