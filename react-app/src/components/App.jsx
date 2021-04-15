@@ -1,6 +1,6 @@
 // packages
 import React from 'react'
-import Bela from '../Bela API'
+import Bela from '../BelaAPI'
 
 // components
 import Head from './head'
