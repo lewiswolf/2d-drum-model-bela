@@ -23,23 +23,33 @@ export default function Drum(props, p5) {
 				this.x,
 				this.y
 			) < this.diameter / 2
+
+			const polarCoords = (mousex, mousey) => {
+				const x = mousex - this.x
+				const y = mousey - this.y
+				return {
+					r: Math.sqrt(x * x + y * y) / (this.diameter * 0.5),
+					theta: Math.atan2(y, x),
+				}
+			}
+
 			// mousedown
 			if (p5.mouseIsPressed && !this.#mouseState && isInsideDrum) {
-				this.mouseDown && this.mouseDown()
+				this.mouseDown && this.mouseDown(polarCoords(p5.mouseX, p5.mouseY))
 				this.#mouseState = true
 			}
 			// mouseup
 			if (!p5.mouseIsPressed && this.#mouseState && isInsideDrum) {
-				this.mouseUp && this.mouseUp()
+				this.mouseUp && this.mouseUp(polarCoords(p5.mouseX, p5.mouseY))
 				this.#mouseState = false
 			}
 			// drag
 			if (p5.mouseIsPressed && this.#mouseState && isInsideDrum) {
-				this.mouseDrag && this.mouseDrag()
+				this.mouseDrag && this.mouseDrag(polarCoords(p5.mouseX, p5.mouseY))
 			}
 			// dragexit
 			if (p5.mouseIsPressed && this.#mouseState && !isInsideDrum) {
-				this.mouseDragExit && this.mouseDragExit()
+				this.mouseDragExit && this.mouseDragExit(polarCoords(p5.mouseX, p5.mouseY))
 				this.#mouseState = false
 			}
 		}
