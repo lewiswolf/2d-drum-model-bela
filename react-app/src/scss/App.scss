@@ -34,6 +34,22 @@ body {
 }
 
 main {
-	height: 100%t;
+	height: 100%;
 	width: 100%;
+	display: grid;
+	grid-template-rows: 80px 100px auto;
+
+	h1 {
+		grid-row: 1;
+		margin: 20px;
+		text-align: center;
+	}
+
+	.p5-container {
+		// 70% of the height of the parent grid size, or 90% of the width
+		height: min(calc((100vh - 180px) * 0.7), 90vw);
+		width: min(calc((100vh - 180px) * 0.7), 90vw);
+		grid-row: 3;
+		place-self: center;
+	}
 }

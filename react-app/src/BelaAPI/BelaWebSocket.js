@@ -50,7 +50,6 @@ export default class BelaWebSocket {
 		// If socket was not closed normally
 		if (event.code !== 1000) {
 			console.log("Reconnecting(1)...");
-			// console.log(this.parent);
 			this.parent.reconnect(this.parent.connectInterval);
 		}
 	}

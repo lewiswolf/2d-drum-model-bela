@@ -10,8 +10,9 @@
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-helmet": "^6.1.0",
+		"react-p5-wrapper": "^2.4.0",
 		"react-scripts": "4.0.3",
-		"sass": "^1.32.8"
+		"sass": "^1.32.12"
 	},
 	"scripts": {
 		"start": "react-scripts start",
