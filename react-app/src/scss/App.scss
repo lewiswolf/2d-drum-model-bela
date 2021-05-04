@@ -2,8 +2,6 @@
 
 $ipad: 812px;
 
-// children
-
 // structure
 
 body {
@@ -53,13 +51,10 @@ main {
 	}
 
 	.p5-container {
-		// 70% of the height of the parent grid size, or 90% of the width
 		height: min(calc(100vh - 200px), 90vw);
 		width: min(calc(100vh - 200px), 90vw);
 		grid-row: 3;
 		place-self: center;
 		margin: 0 0 20px 0;
-		touch-action: none;
-		user-select: none;
 	}
 }

@@ -49,6 +49,8 @@ export default class p5 extends PureComponent {
 				style={{
 					height: 'fit-content',
 					width: 'fit-content',
+					userSelect: 'none',
+					touchAction: 'none',
 					fontSize: 0,
 				}}
 			>
