@@ -32,7 +32,7 @@ export default function Drum(props, p5) {
 				const x = p5.mouseX - this.x
 				const y = p5.mouseY - this.y
 				return {
-					r: Math.sqrt(x * x + y * y) / (this.diameter * 0.5),
+					r: Math.min(Math.sqrt(x * x + y * y) / (this.diameter * 0.5), 1.0),
 					theta: Math.atan2(y, x),
 				}
 			}
