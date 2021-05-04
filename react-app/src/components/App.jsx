@@ -39,7 +39,7 @@ export default class App extends React.Component {
 						<div className='params'>
 							<MaxMSP.Slider />
 						</div>
-						<div className='p5-container' onContextMenu={(e) => e.preventDefault()}>
+						<div className='p5-container'>
 							<P5 src={sketch} />
 						</div>
 					</main>

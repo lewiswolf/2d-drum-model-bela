@@ -45,6 +45,7 @@ export default class p5 extends PureComponent {
 		return (
 			<div
 				className='p5'
+				onContextMenu={(e) => e.preventDefault()}
 				style={{
 					height: 'fit-content',
 					width: 'fit-content',
