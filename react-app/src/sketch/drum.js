@@ -37,7 +37,39 @@ export default function Drum(props, p5) {
 				}
 			}
 
-			// listeners
+			// touch listeners
+			window.addEventListener('touchstart', (e) => {
+				e.preventDefault()
+				if (this.#isInsideDrum(p5.mouseX, p5.mouseY) && e.cancelable) {
+					this.mouseDown && this.mouseDown(this.#polarCoords(p5.mouseX, p5.mouseY))
+					this.#mouseState = true
+				}
+			})
+			window.addEventListener('touchend', (e) => {
+				e.preventDefault()
+				if (this.#isInsideDrum(p5.mouseX, p5.mouseY) && e.cancelable) {
+					this.mouseUp && this.mouseUp(this.#polarCoords(p5.mouseX, p5.mouseY))
+					this.#mouseState = false
+				}
+			})
+			window.addEventListener('touchcancel', () => {
+				if (this.#isInsideDrum(p5.mouseX, p5.mouseY)) {
+					this.mouseUp && this.mouseUp(this.#polarCoords(p5.mouseX, p5.mouseY))
+					this.#mouseState = false
+				}
+			})
+			window.addEventListener('touchmove', () => {
+				if (this.#isInsideDrum(p5.mouseX, p5.mouseY)) {
+					this.mouseDrag && this.mouseDrag(this.#polarCoords(p5.mouseX, p5.mouseY))
+					this.#mouseState = true
+				}
+				if (!this.#isInsideDrum(p5.mouseX, p5.mouseY) && this.#mouseState) {
+					this.mouseDragExit && this.mouseDragExit(this.#polarCoords(p5.mouseX, p5.mouseY))
+					this.#mouseState = false
+				}
+			})
+
+			// mouse listeners
 			window.addEventListener('mousedown', (e) => {
 				if (this.#isInsideDrum(p5.mouseX, p5.mouseY) && e.button === 0) {
 					this.mouseDown && this.mouseDown(this.#polarCoords(p5.mouseX, p5.mouseY))
