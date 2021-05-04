@@ -1,3 +1,4 @@
+import Bela from '../BelaAPI'
 import Drum from './drum'
 
 export default function sketch(p5) {
@@ -20,15 +21,14 @@ export default function sketch(p5) {
 	p5.setup = () => {
 		// create canvas and drum
 		p5.createCanvas(reactProps.width, reactProps.height)
-		// circular drum membrane
 		drum = Drum({
-			x: 0,
-			y: 0,
-			diameter: 0,
-			mouseDown: (pol) => console.log(`mouseDown r: ${pol.r} theta: ${pol.theta}`),
-			mouseUp: (pol) => console.log(`mouseUp ${pol.r} theta: ${pol.theta}`),
-			drag: (pol) => console.log(`mouseDrag ${pol.r} theta: ${pol.theta}`),
-			dragExit: (pol) => console.log(`mouseDragExit ${pol.r} theta: ${pol.theta}`),
+			// x: 0,
+			// y: 0,
+			// diameter: 0,
+			mouseDown: (pol) => Bela.sendBuffer(0, 'float', [pol.r, pol.theta]),
+			// mouseUp: (pol) => console.log(`mouseUp ${pol.r} theta: ${pol.theta}`),
+			// drag: (pol) => console.log(`mouseDrag ${pol.r} theta: ${pol.theta}`),
+			// dragExit: (pol) => console.log(`mouseDragExit ${pol.r} theta: ${pol.theta}`),
 		}, p5)
 	}
 

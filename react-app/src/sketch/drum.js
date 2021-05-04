@@ -2,26 +2,25 @@ export default function Drum(props, p5) {
 	class Drum {
 		// private
 		#mouseState
-		// methods
 		#isInsideDrum
 		#polarCoords
 
 		constructor(props) {
-			// public
+			// public vars
 			this.x = props?.x || 0
 			this.y = props?.y || 0
 			this.diameter = props?.diameter || 0
 
-			// methods
+			// public methods
 			this.mouseDown = props?.mouseDown || null
 			this.mouseUp = props?.mouseUp || null
 			this.mouseDrag = props?.drag || null
 			this.mouseDragExit = props?.dragExit || null
 
-			// private
+			// private vars
 			this.#mouseState = false
 
-			// methods
+			// private methods
 			this.#isInsideDrum = (mousex, mousey) => p5.dist(
 				mousex,
 				mousey,

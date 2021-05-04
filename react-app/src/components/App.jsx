@@ -1,6 +1,7 @@
 // packages
 import React from 'react'
-// import Bela from '../BelaAPI'
+import * as MaxMSP from 'maxmsp-gui'
+import Bela from '../BelaAPI'
 
 // components
 import Head from './head'
@@ -9,36 +10,40 @@ import sketch from '../sketch/sketch'
 
 // scss
 import '../scss/App.scss'
+import 'maxmsp-gui/dist/index.css'
 
 export default class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			belaLoaded: true,
-			// belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
+			// belaLoaded: true,
+			belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
 		}
 	}
 
 	componentDidMount() {
 		// listeners for when Bela is connected/disconnected
-		// window.addEventListener('BelaConnected', () => this.setState({ belaLoaded: true }))
-		// window.addEventListener('BelaDisconnected', () => this.setState({ belaLoaded: false }))
+		window.addEventListener('BelaConnected', () => this.setState({ belaLoaded: true }))
+		window.addEventListener('BelaDisconnected', () => this.setState({ belaLoaded: false }))
 	}
 
 	render() {
-		// this.state.belaLoaded && Bela.sendBuffer(0, 'float', ['1', '1', '1', '1'])
 		return (
 			<React.Fragment>
 				<Head />
-				<p style={{ display: !this.state.belaLoaded ? 'block' : 'none' }}>
-					There is no Bela connected... 🧑‍💻
-				</p>
-				<main style={{ display: this.state.belaLoaded ? 'grid' : 'none' }}>
-					<h1>2D Drum Model</h1>
-					<div className='p5-container'>
-						<P5 src={sketch} />
-					</div>
-				</main>
+				{!this.state.belaLoaded ? (
+					<p>There is no Bela connected... 🧑‍💻</p>
+				) : (
+					<main>
+						<h1>2D Drum Model</h1>
+						<div className='params'>
+							<MaxMSP.Slider />
+						</div>
+						<div className='p5-container' onContextMenu={(e) => e.preventDefault()}>
+							<P5 src={sketch} />
+						</div>
+					</main>
+				)}
 			</React.Fragment>
 		)
 	}
