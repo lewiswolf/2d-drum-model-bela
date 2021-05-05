@@ -1,3 +1,10 @@
+/*
+	Class for the drum GUI;
+	features include
+		- responsive painting
+		- custom mouse and touch handlers
+*/
+
 export default function Drum(props, p5) {
 	class Drum {
 		// private

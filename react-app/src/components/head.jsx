@@ -1,3 +1,7 @@
+/*
+	Infers <head></head> tags entirely from public/manifest.json
+*/
+
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 

@@ -1,3 +1,9 @@
+/*
+	Originally written for this project:
+	https://github.com/lewiswolf/lewiswolstanholme
+	Inserts a p5 canvas that fits within any responsive container
+*/
+
 import React, { PureComponent } from 'react'
 import { findDOMNode } from 'react-dom'
 import P5Wrapper from 'react-p5-wrapper'
