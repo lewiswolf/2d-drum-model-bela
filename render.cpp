@@ -17,13 +17,9 @@ bool setup(BelaContext *context, void *userData) {
 }
 
 void render(BelaContext *context, void *userData) {
-	DataBuffer& sizeBuffer = gui.getDataBuffer(0);
-	DataBuffer& decayBuffer = gui.getDataBuffer(1);
-	DataBuffer& eventBuffer = gui.getDataBuffer(2);
-
-	float R = sizeBuffer.getAsFloat()[0];
-	float decay = decayBuffer.getAsFloat()[0];
-	float* event = eventBuffer.getAsFloat();
+	float R = gui.getDataBuffer(0).getAsFloat()[0];
+	float decay = gui.getDataBuffer(1).getAsFloat()[0];
+	float* event = gui.getDataBuffer(2).getAsFloat();
                     
 	rt_printf("size %f \n", R);
 	rt_printf("decay %f \n", decay);

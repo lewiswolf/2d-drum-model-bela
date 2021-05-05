@@ -17,7 +17,7 @@ export default class App extends React.Component {
 		super(props)
 		this.state = {
 			belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
-			sizeOfDrum: 0,
+			radiusOfDrum: 0,
 			decayTime: 0,
 		}
 	}
@@ -26,7 +26,7 @@ export default class App extends React.Component {
 		// listeners for when Bela is connected/disconnected
 		window.addEventListener('BelaConnected', () => this.setState({ belaLoaded: true }))
 		window.addEventListener('BelaDisconnected', () =>
-			this.setState({ belaLoaded: false, sizeOfDrum: 0, decayTime: 0 })
+			this.setState({ belaLoaded: false, radiusOfDrum: 0, decayTime: 0 })
 		)
 	}
 
@@ -41,14 +41,14 @@ export default class App extends React.Component {
 						<h1>2D Drum Model</h1>
 						<div className='params'>
 							<div>
-								<p>{`Size of Drum: ${this.state.sizeOfDrum}cm`}</p>
+								<p>{`Radius of Drum: ${this.state.radiusOfDrum}cm`}</p>
 								<Slider
-									ariaLabel='slider controlling the size of a drum'
+									ariaLabel='slider controlling the radius of a drum'
 									fidelity={10000}
-									value={this.state.sizeOfDrum}
+									value={this.state.radiusOfDrum}
 									onChange={(i) => {
 										Bela.sendBuffer(0, 'float', i)
-										this.setState({ sizeOfDrum: i })
+										this.setState({ radiusOfDrum: i })
 									}}
 								/>
 							</div>
