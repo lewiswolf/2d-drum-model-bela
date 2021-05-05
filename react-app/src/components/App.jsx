@@ -16,8 +16,7 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			belaLoaded: true,
-			// belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
+			belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
 			sizeOfDrum: 0,
 			decayTime: 0,
 		}
@@ -25,10 +24,10 @@ export default class App extends React.Component {
 
 	componentDidMount() {
 		// listeners for when Bela is connected/disconnected
-		// window.addEventListener('BelaConnected', () => this.setState({ belaLoaded: true }))
-		// window.addEventListener('BelaDisconnected', () =>
-		// 	this.setState({ belaLoaded: false, sizeOfDrum: 0, decayTime: 0 })
-		// )
+		window.addEventListener('BelaConnected', () => this.setState({ belaLoaded: true }))
+		window.addEventListener('BelaDisconnected', () =>
+			this.setState({ belaLoaded: false, sizeOfDrum: 0, decayTime: 0 })
+		)
 	}
 
 	render() {
