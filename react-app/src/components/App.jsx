@@ -1,7 +1,7 @@
 // packages
 import React from 'react'
 import { Slider } from 'maxmsp-gui'
-// import Bela from '../BelaAPI'
+import Bela from '../BelaAPI'
 
 // components
 import Head from './head'
@@ -16,15 +16,15 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			belaLoaded: true,
-			// belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
+			// belaLoaded: true,
+			belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
 		}
 	}
 
 	componentDidMount() {
 		// listeners for when Bela is connected/disconnected
-		// window.addEventListener('BelaConnected', () => this.setState({ belaLoaded: true }))
-		// window.addEventListener('BelaDisconnected', () => this.setState({ belaLoaded: false }))
+		window.addEventListener('BelaConnected', () => this.setState({ belaLoaded: true }))
+		window.addEventListener('BelaDisconnected', () => this.setState({ belaLoaded: false }))
 	}
 
 	render() {
