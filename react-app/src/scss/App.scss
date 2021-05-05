@@ -1,7 +1,3 @@
-// var
-
-$ipad: 812px;
-
 // structure
 
 body {
@@ -20,7 +16,7 @@ body {
 	width: 100vw;
 	display: grid;
 
-	p {
+	> p {
 		height: fit-content;
 		width: 100%;
 		margin: 0;
@@ -35,7 +31,7 @@ main {
 	height: 100%;
 	width: 100%;
 	display: grid;
-	grid-template-rows: 80px 100px auto;
+	grid-template-rows: 80px 125px auto;
 
 	h1 {
 		grid-row: 1;
@@ -45,14 +41,40 @@ main {
 	}
 
 	.params {
-		height: fit-content;
-		width: fit-content;
+		height: 100%;
+		width: 600px;
+		display: grid;
+		grid-template-rows: 100%;
+		grid-template-columns: 50% 50%;
 		place-self: center;
+
+		> div {
+			height: fit-content;
+			width: fit-content;
+			place-self: center;
+			margin: 5px;
+
+			p {
+				height: fit-content;
+				width: 100%;
+				margin: 0 5px 5px 5px;
+				font-weight: bold;
+				text-align: center;
+				vertical-align: middle;
+				user-select: none;
+			}
+		}
+
+		@media (max-width: 632px) {
+			grid-template-rows: 50% 50%;
+			grid-template-columns: 100%;
+			width: 95%;
+		}
 	}
 
 	.p5-container {
-		height: min(calc(100vh - 200px), 90vw);
-		width: min(calc(100vh - 200px), 90vw);
+		height: min(calc(100vh - 225px), 90vw);
+		width: min(calc(100vh - 225px), 90vw);
 		grid-row: 3;
 		place-self: center;
 		margin: 0 0 20px 0;

@@ -27,14 +27,13 @@ export default function sketch(p5) {
 		// create canvas and drum
 		p5.createCanvas(reactProps.width, reactProps.height)
 		drum = Drum({
-			// x: 0,
-			// y: 0,
-			// diameter: 0,
-			mouseDown: (pol) => Bela.sendBuffer(0, 'float', [pol.r, pol.theta]),
-			// mouseDown: (pol) => console.log(`mouseDown r: ${pol.r} theta: ${pol.theta}`),
-			// mouseUp: (pol) => console.log(`mouseUp r: ${pol.r} theta: ${pol.theta}`),
-			// drag: (pol) => console.log(`mouseDrag r: ${pol.r} theta: ${pol.theta}`),
-			// dragExit: (pol) => console.log(`mouseDragExit r: ${pol.r} theta: ${pol.theta}`),
+			x: reactProps.width / 2,
+			y: reactProps.height / 2,
+			diameter: reactProps.width * 0.95,
+			mouseDown: (pol) => Bela.sendBuffer(2, 'float', [0, pol.r, pol.theta]),
+			mouseUp: (pol) => Bela.sendBuffer(2, 'float', [1, pol.r, pol.theta]),
+			drag: (pol) => Bela.sendBuffer(2, 'float', [2, pol.r, pol.theta]),
+			dragExit: (pol) => Bela.sendBuffer(2, 'float', [3, pol.r, pol.theta]),
 		}, p5)
 	}
 
