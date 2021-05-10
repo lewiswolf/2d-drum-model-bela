@@ -29,12 +29,6 @@ void render(BelaContext *context, void *userData) {
 	// rt_printf("decay %f \n", decay);
 	// rt_printf("eventType %f r %f theta %f \n", event[0], event[1], event[2]);
 
-	float out = 0;
-	for (unsigned int n = 0; n < context->audioFrames; n++) {
-		out = Osc.renderSine(440, 1.0);
-	}
-
-	scope.log(out);
 }
 
 void cleanup(BelaContext *context, void *userData) { }

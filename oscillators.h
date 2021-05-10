@@ -8,11 +8,6 @@ class Osc {
 			s_r = context.audioSampleRate;
 			s_l = 1 / s_r;
 		}
-		float renderSine(float f, float a) {
-			float out = a * sin(2.0 * M_PI * phi * (f * s_l));
-			phi++;
-			return out;
-		}
 	private:
 		BelaContext* context;
 		float phi = 0;		// phase
