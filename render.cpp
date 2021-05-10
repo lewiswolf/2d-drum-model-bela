@@ -15,6 +15,7 @@ bool setup(BelaContext *context, void *userData) {
 	gui.setBuffer('f', 3);	// mouse or touch event (event type, r, theta)
 							// 0 = mousedown, 1 = mouseup, 2 = drag, 3 = dragexit
 
+	// init scope
 	scope.setup(2, context->audioSampleRate);
 
 	return true;
@@ -29,6 +30,10 @@ void render(BelaContext *context, void *userData) {
 	// rt_printf("decay %f \n", decay);
 	// rt_printf("eventType %f r %f theta %f \n", event[0], event[1], event[2]);
 
+	for (unsigned int n = 0; n < context->audioFrames; n++) {
+		float out = Osc.renderSine(440.0, 1.0);
+		scope.log(out);
+	}
 }
 
 void cleanup(BelaContext *context, void *userData) { }
