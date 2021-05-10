@@ -3,6 +3,9 @@
 	features include
 		- responsive painting
 		- custom mouse and touch handlers
+
+	Although the default export is a function, this could very easily be simply a class.
+	However, I was unable to pass p5 to the class using import statements. 
 */
 
 export default function Drum(props, p5) {
