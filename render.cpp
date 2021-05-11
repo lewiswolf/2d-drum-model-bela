@@ -1,8 +1,8 @@
 #include <Bela.h>
 #include <libraries/Gui/Gui.h>
 #include <libraries/Scope/Scope.h>
-#include "oscillator.h"
-#include "bessel.h"
+#include "oscillator.hpp"
+#include "bessel.hpp"
 
 Gui gui;
 Scope scope;

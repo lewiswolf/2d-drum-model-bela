@@ -23,7 +23,7 @@ double besselZero(int n, int m) {
 	// Newton's method
 	// 0 ~ x_n - (f(x_n) / f'(x_n))
 	for (unsigned int i = 0; i < 5; i++){
-		double x = z;
+		double x = z_mn;
 
 	}
 
