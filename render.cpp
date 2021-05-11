@@ -19,6 +19,10 @@ bool setup(BelaContext *context, void *userData) {
 	scope.setup(2, context->audioSampleRate);
 	// init oscillators
 	Osc.setup(context);
+	// init modes
+	for (unsigned int i = 0; i < 8; i++){
+		rt_printf("%f \n", besselZero(1,i + 1));
+	}
 	return true;
 }
 

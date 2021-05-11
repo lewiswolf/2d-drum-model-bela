@@ -1,5 +1,37 @@
 #include <cmath>
 
+double bessel(int n, double x) {
+	/*
+		Calculates the bessel function J_n(x)
+		Adapted from void bess() http://www.falstad.com/circosc-java/CircOsc.java
+		Inputs:
+			n - bessel order
+			x - x coordinate
+		Outputs:
+			y - y value for J_n(x)
+	*/
+
+	// calculate J_k(x) for all k < N
+	int maxmx = max(n, (int)x);
+	int n_top = 2 * ((int)((maxmx + 15) / 2 + 1));
+	// vector to store recursion values
+	double j[n_top + 2];
+	j[n_top + 1] = 0.0;
+	j[n_top] = 1.0;
+	double epsilon = 1e-16;
+	// downwards recursion
+	for(int i = n_top - 2; i >= 0; i--) {
+	    j[i + 1] = 2 * (i + 1) / (x + epsilon) * j[i + 2] - j[i + 3];
+	}
+	// sum together predicted values
+	double norm = j[1];
+	for(unsigned int i = 2; i <= n_top; i += 2 ) {
+	    norm += 2 * j[i + 1];
+	}                    
+    // return y
+    return j[n + 1] / norm;
+}
+
 double besselZero(int n, int m) {
 	/*
 		Calculates the mth zero crossing b_nm such that
@@ -21,54 +53,40 @@ double besselZero(int n, int m) {
 	z_mn -= 64 * (mu - 1) * (6949 * pow(mu, 3) - 153855 * pow(mu, 2) + 1585743 * mu - 6277237) / (105 * pow(beta8, 7));
 
 	// Newton's method
-	// 0 ~ x_n - (f(x_n) / f'(x_n))
-	for (unsigned int i = 0; i < 5; i++){
-		double x = z_mn;
+	for(unsigned int i = 1; i <= 5; i++) {
+		/*
+			Much of the code below is shared with the bessel() function declared above,
+			as I could not figure out how to pass arrays between functions.
+		*/
+		// calculate J_k(x) for all k < N
+		int maxmx = max(n, (int)z_mn);
+		int n_top = 2 * ((int)((maxmx + 15) / 2 + 1));
+		// prepare vector to store recursion values
+		double j[n_top + 2];
+		j[n_top + 1] = 0.0;
+		j[n_top] = 1.0;
+		double epsilon = 1e-16;
+		// downwards recursion
+		for(int i = n_top - 2; i >= 0; i--) {
+			j[i + 1] = 2 * (i + 1) / (z_mn + epsilon) * j[i + 2] - j[i + 3];
+		}
+		// normalise
+		double norm = j[1];
+		for(unsigned int i = 2; i <= n_top; i += 2 ) {
+			norm += 2 * j[i + 1];
+		}
+		for(unsigned int i = 0; i <= n_top; i++) {
+			j[i + 1] = j[i + 1] / norm;
+		}
+		/*
+			Much of the code above is shared with the bessel function declared above,
+			as I could not figure out how to pass arrays between functions.
+		*/
 
+	    // Use the recursion relation to evaluate derivative
+	    double deriv = -j[n + 2] + n / z_mn * j[n + 1];
+	    z_mn -= j[n + 1] / deriv;
 	}
 
 	return z_mn;
 }
-
-double bessel(int n, double x) {
-	/*
-		Calculates the bessel function J_n(x)
-		Inputs:
-			n - bessel order
-			x - x coordinate
-		Outputs:
-			y - y value for J_n(x)
-	*/
-
-	double y;
-
-	return y;
-}
-
-double besselPrime(int n, double x) {
-	/*
-		Calculates the derivative of the bessel function J'_n(x)
-		Inputs:
-			n - bessel order
-			x - x coordinate
-		Outputs:
-			y - y value for J'_n(x)
-	*/
-
-	double y;
-
-	return y;
-}
-    
-
-
-
-	//* Use Newton's method to locate the root
-	// double jj[] = new double[n+3];
-	// int i;  double deriv;
-	// for( i=1; i<=5; i++ ) {
-	// 	bess( n+1, z, jj );  // Remember j(1) is J_0(z)     
-	// 	// Use the recursion relation to evaluate derivative
-	// 	deriv = -jj[n+2] + n/z * jj[n+1];
-	// 	z -= jj[n+1]/deriv;  // Newton's root finding  
-	// }
