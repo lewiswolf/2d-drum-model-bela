@@ -2,6 +2,7 @@
 #include <libraries/Gui/Gui.h>
 #include <libraries/Scope/Scope.h>
 #include "oscillator.h"
+#include "bessel.h"
 
 Gui gui;
 Scope scope;
@@ -14,10 +15,10 @@ bool setup(BelaContext *context, void *userData) {
 	gui.setBuffer('f', 1);	// decay time in ms
 	gui.setBuffer('f', 3);	// mouse or touch event (event type, r, theta)
 							// 0 = mousedown, 1 = mouseup, 2 = drag, 3 = dragexit
-
 	// init scope
 	scope.setup(2, context->audioSampleRate);
-
+	// init oscillators
+	Osc.setup(context);
 	return true;
 }
 
@@ -31,8 +32,11 @@ void render(BelaContext *context, void *userData) {
 	// rt_printf("eventType %f r %f theta %f \n", event[0], event[1], event[2]);
 
 	for (unsigned int n = 0; n < context->audioFrames; n++) {
-		float out = Osc.renderSine(440.0, 1.0);
-		scope.log(out);
+		float output = Osc.renderSine(440.0, 1.0);
+		for (unsigned int channel = 0; channel < context->audioOutChannels; channel++) {
+			audioWrite(context, n, channel, output);
+		}
+		scope.log(output);
 	}
 }
 
