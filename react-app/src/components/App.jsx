@@ -16,8 +16,7 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			belaLoaded: true,
-			// belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
+			belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
 			radiusOfDrum: 100,
 			decayTime: 1000,
 		}
