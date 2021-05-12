@@ -79,11 +79,11 @@ double besselZero(int n, int m) {
 			j[i + 1] = j[i + 1] / norm;
 		}
 		/*
-			Much of the code above is shared with the bessel function declared above,
+			Much of the code above is shared with the bessel() function declared above,
 			as I could not figure out how to pass arrays between functions.
 		*/
 
-	    // Use the recursion relation to evaluate derivative
+	    // use the recursion relation to evaluate derivative
 	    double deriv = -j[n + 2] + n / z_mn * j[n + 1];
 	    z_mn -= j[n + 1] / deriv;
 	}
