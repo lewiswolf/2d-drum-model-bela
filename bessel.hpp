@@ -35,7 +35,8 @@ double bessel(int n, double x) {
 double besselZero(int n, int m) {
 	/*
 		Calculates the mth zero crossing b_nm such that
-		J_n(B_mn) ~ 0
+		Adapted from double zeroj() http://www.falstad.com/circosc-java/CircOsc.java
+		J_n(z_mn) ~ 0
 		Input:
 			n - bessel order
 			m - mth zero
@@ -52,7 +53,7 @@ double besselZero(int n, int m) {
 	z_mn -= 32 * (mu - 1) * (83 * pow(mu, 2) - 982 * mu + 3779) / (15 * pow(beta8, 5));
 	z_mn -= 64 * (mu - 1) * (6949 * pow(mu, 3) - 153855 * pow(mu, 2) + 1585743 * mu - 6277237) / (105 * pow(beta8, 7));
 
-	// Newton's method
+	// Newton's method for approximating roots
 	for(unsigned int i = 1; i <= 5; i++) {
 		/*
 			Much of the code below is shared with the bessel() function declared above,
