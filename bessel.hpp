@@ -2,13 +2,13 @@
 
 double bessel(int n, double x) {
 	/*
-		Calculates the bessel function J_n(x)
-		Adapted from void bess() http://www.falstad.com/circosc-java/CircOsc.java
-		Inputs:
-			n - bessel order
-			x - x coordinate
-		Outputs:
-			y - y value for J_n(x)
+	Calculates the bessel function J_n(x)
+	Adapted from void bess() http://www.falstad.com/circosc-java/CircOsc.java
+	Inputs:
+		n - bessel order
+		x - x coordinate
+	Outputs:
+		y - y value for J_n(x)
 	*/
 
 	// calculate J_k(x) for all k < N
@@ -21,27 +21,27 @@ double bessel(int n, double x) {
 	double epsilon = 1e-16;
 	// downwards recursion
 	for(int i = n_top - 2; i >= 0; i--) {
-	    j[i + 1] = 2 * (i + 1) / (x + epsilon) * j[i + 2] - j[i + 3];
+		j[i + 1] = 2 * (i + 1) / (x + epsilon) * j[i + 2] - j[i + 3];
 	}
 	// sum together predicted values
 	double norm = j[1];
 	for(unsigned int i = 2; i <= n_top; i += 2 ) {
-	    norm += 2 * j[i + 1];
-	}                    
-    // return y
-    return j[n + 1] / norm;
+		norm += 2 * j[i + 1];
+	}
+	// return y
+	return j[n + 1] / norm;
 }
 
 double besselZero(int n, int m) {
 	/*
-		Calculates the mth zero crossing b_nm such that
-		Adapted from double zeroj() http://www.falstad.com/circosc-java/CircOsc.java
-		J_n(z_mn) ~ 0
-		Input:
-			n - bessel order
-			m - mth zero
-		Output:
-			z_mn - mth zero crossing of J_n()
+	Calculates the mth zero crossing b_nm such that
+	Adapted from double zeroj() http://www.falstad.com/circosc-java/CircOsc.java
+	J_n(z_mn) ~ 0
+	Input:
+		n - bessel order
+		m - mth zero
+	Output:
+		z_mn - mth zero crossing of J_n()
 	*/
 
 	// Asymtotic expansions found in Theory of Bessel Functions p.506
@@ -55,9 +55,10 @@ double besselZero(int n, int m) {
 
 	// Newton's method for approximating roots
 	for(unsigned int i = 1; i <= 5; i++) {
+		
 		/*
-			Much of the code below is shared with the bessel() function declared above,
-			as I could not figure out how to pass arrays between functions.
+		Much of the code below is shared with the bessel() function declared above,
+		as I could not figure out how to pass arrays between functions.
 		*/
 		// calculate J_k(x) for all k < N
 		int maxmx = max(n, (int)z_mn);
@@ -80,13 +81,13 @@ double besselZero(int n, int m) {
 			j[i + 1] = j[i + 1] / norm;
 		}
 		/*
-			Much of the code above is shared with the bessel() function declared above,
-			as I could not figure out how to pass arrays between functions.
+		Much of the code above is shared with the bessel() function declared above,
+		as I could not figure out how to pass arrays between functions.
 		*/
 
-	    // use the recursion relation to evaluate derivative
-	    double deriv = -j[n + 2] + n / z_mn * j[n + 1];
-	    z_mn -= j[n + 1] / deriv;
+		// use the recursion relation to evaluate derivative
+		double deriv = -j[n + 2] + n / z_mn * j[n + 1];
+		z_mn -= j[n + 1] / deriv;
 	}
 
 	return z_mn;

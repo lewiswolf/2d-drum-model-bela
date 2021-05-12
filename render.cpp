@@ -56,7 +56,7 @@ void render(BelaContext *context, void *userData) {
 	float R = gui.getDataBuffer(0).getAsFloat()[0];			// R (size of drum)
 	float decay = gui.getDataBuffer(1).getAsFloat()[0];		// decay time in ms
 	float* event = gui.getDataBuffer(2).getAsFloat();		// mouse or touch event (event type, r, theta)
-                    
+
 	// rt_printf("size %f \n", R);
 	// rt_printf("decay %f \n", decay);
 	// rt_printf("eventType %f r %f theta %f \n", event[0], event[1], event[2]);
