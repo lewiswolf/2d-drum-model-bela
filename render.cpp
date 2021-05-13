@@ -75,7 +75,7 @@ void render(BelaContext *context, void *userData) {
 		for (unsigned int n = 0; n < matrixd1; n++) {
 			for (unsigned int m = 0; m < matrixd2; m++) {
 				// this is slow, and may be sped up with c++17 cmath functions
-				J[n][m] = bessel(0, zeros[n][m] * event[1]);
+				J[n][m] = bessel(n, zeros[n][m] * event[1]);
 			}
 		}
 		// update other params
