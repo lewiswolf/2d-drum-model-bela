@@ -8,7 +8,7 @@ const short max_n = 4;					// global matrix dim 1 => n
 const short max_m = 8;					// global matrix dim 2 => m
 int t = 0;								// time
 int gDecay;								// global decay length in ms
-float gRadius;							// global radius
+float gRadius;							// global radius from interface
 float gTheta;							// global theta from interface
 float zeros[max_n][max_m];				// zero crossings of the bessel functions -> J_n(z_nm) = 0
 float modes[max_n][max_m];				// modes of vibration in hz
