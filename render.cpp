@@ -86,7 +86,7 @@ void render(BelaContext *context, void *userData) {
 			// render mode
 			for (unsigned int n = 0; n < matrixd1; n++) {
 				for (unsigned int m = 0; m < matrixd2; m++) {
-					float u_nm = a * Oscillators[n][m].renderSine(modes[n][m], 1.0) * J[n][m];
+					float u_nm = Oscillators[n][m].renderWave(modes[n][m], a) * J[n][m];
 					if (n != 0) {
 						u_nm *= cos(n * gTheta) + sin(n * gTheta);
 					}

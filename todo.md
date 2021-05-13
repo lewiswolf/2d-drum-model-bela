@@ -1,5 +1,6 @@
 ## important missing features
 
+-   add back cosine to equation
 -   no attack before sound is played
 -   size of drum
 

@@ -2,7 +2,7 @@
 
 double bessel(int n, double x) {
 	/*
-	Calculates the bessel function J_n(x)
+	Calculates the bessel function of the first kind J_n(x)
 	Adapted from void bess() http://www.falstad.com/circosc-java/CircOsc.java
 	Inputs:
 		n - bessel order
@@ -34,24 +34,23 @@ double bessel(int n, double x) {
 
 double besselZero(int n, int m) {
 	/*
-	Calculates the mth zero crossing b_nm such that
+	Calculates the mth zero crossing of bessel functions of the first kind
 	Adapted from double zeroj() http://www.falstad.com/circosc-java/CircOsc.java
-	J_n(z_mn) ~ 0
 	Input:
 		n - bessel order
 		m - mth zero
 	Output:
-		z_mn - mth zero crossing of J_n()
+		z_nm - mth zero crossing of J_n()
 	*/
 
 	// Asymtotic expansions found in Theory of Bessel Functions p.506
 	double beta = (m + 0.5 * n - 0.25) * M_PI;
 	double beta8 = beta * 8;
 	double mu = 4 * n * n;
-	double z_mn = beta - (mu - 1) / beta8;
-	z_mn -= 4 * (mu - 1) * (7 * mu - 31)/(3 * pow(beta8, 3));
-	z_mn -= 32 * (mu - 1) * (83 * pow(mu, 2) - 982 * mu + 3779) / (15 * pow(beta8, 5));
-	z_mn -= 64 * (mu - 1) * (6949 * pow(mu, 3) - 153855 * pow(mu, 2) + 1585743 * mu - 6277237) / (105 * pow(beta8, 7));
+	double z_nm = beta - (mu - 1) / beta8;
+	z_nm -= 4 * (mu - 1) * (7 * mu - 31)/(3 * pow(beta8, 3));
+	z_nm -= 32 * (mu - 1) * (83 * pow(mu, 2) - 982 * mu + 3779) / (15 * pow(beta8, 5));
+	z_nm -= 64 * (mu - 1) * (6949 * pow(mu, 3) - 153855 * pow(mu, 2) + 1585743 * mu - 6277237) / (105 * pow(beta8, 7));
 
 	// Newton's method for approximating roots
 	for(unsigned int i = 1; i <= 5; i++) {
@@ -61,7 +60,7 @@ double besselZero(int n, int m) {
 		as I could not figure out how to pass arrays between functions.
 		*/
 		// calculate J_k(x) for all k < N
-		int maxmx = max(n, (int)z_mn);
+		int maxmx = max(n, (int)z_nm);
 		int n_top = 2 * ((int)((maxmx + 15) / 2 + 1));
 		// prepare vector to store recursion values
 		double j[n_top + 2];
@@ -70,7 +69,7 @@ double besselZero(int n, int m) {
 		double epsilon = 1e-16;
 		// downwards recursion
 		for(int i = n_top - 2; i >= 0; i--) {
-			j[i + 1] = 2 * (i + 1) / (z_mn + epsilon) * j[i + 2] - j[i + 3];
+			j[i + 1] = 2 * (i + 1) / (z_nm + epsilon) * j[i + 2] - j[i + 3];
 		}
 		// normalise
 		double norm = j[1];
@@ -86,9 +85,9 @@ double besselZero(int n, int m) {
 		*/
 
 		// use the recursion relation to evaluate derivative
-		double deriv = -j[n + 2] + n / z_mn * j[n + 1];
-		z_mn -= j[n + 1] / deriv;
+		double deriv = -j[n + 2] + n / z_nm * j[n + 1];
+		z_nm -= j[n + 1] / deriv;
 	}
 
-	return z_mn;
+	return z_nm;
 }

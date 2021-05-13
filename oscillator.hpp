@@ -16,8 +16,8 @@ class Osc {
 			s_l = 1 / s_r;
 		};
 		// render output
-		float renderSine(float f, float a){
-			float out = a * sin(phi);
+		float renderWave(float f, float a){
+			float out = a * (cos(phi) + sin(phi));
 			phi += two_pi * f * s_l;
 			if (phi > two_pi){
 				phi -= two_pi;
