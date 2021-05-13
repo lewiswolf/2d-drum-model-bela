@@ -80,8 +80,8 @@ void render(BelaContext *context, void *userData) {
 		}
 		// update other params
 		gTheta = event[2];
-		gDecay = (int)decay;
-		t = (int)((gDecay / 1000) * context->audioSampleRate);
+		gDecay = (int)((decay * 0.001) * context->audioSampleRate);
+		t = gDecay;
 	}
 
 	for (unsigned int sample = 0; sample < context->audioFrames; sample++) {
@@ -90,7 +90,7 @@ void render(BelaContext *context, void *userData) {
 		// if a mouseup event occured
 		if (t != 0 && event[0] == 1.0) {
 			// calculate amplitude
-			float a = t / gDecay;
+			float a = (float)t / (float)gDecay;
 			// render mode
 			for (unsigned int n = 0; n < max_n; n++) {
 				for (unsigned int m = 0; m < max_m; m++) {
@@ -102,7 +102,7 @@ void render(BelaContext *context, void *userData) {
 				}
 			}
 			// normalise and decrement
-			output /= max_n * max_m * 100;
+			output /= max_n * max_m;
 			t--;
 		}
 		// write to audio buffer
