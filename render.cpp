@@ -20,8 +20,8 @@ Osc Oscillators[max_n][max_m];			// oscillators
 void updateModes(float f_0) {
 	// update modes in relation to new fundamental
 	for (unsigned int n = 0; n < max_n; n++) {
-		for (unsigned int m = 0; m < max_m; m++){
-			if (n == 0 && m == 0){
+		for (unsigned int m = 0; m < max_m; m++) {
+			if (n == 0 && m == 0) {
 				modes[n][m] = f_0;
 			} else {
 				modes[n][m] = f_0 * (zeros[n][m] / zeros[0][0]);
@@ -39,7 +39,7 @@ bool setup(BelaContext *context, void *userData) {
 										// 0 = mousedown, 1 = mouseup, 2 = drag, 3 = dragexit
 	// init zeros & oscillators
 	for (unsigned int n = 0; n < max_n; n++) {
-		for (unsigned int m = 0; m < max_m; m++){
+		for (unsigned int m = 0; m < max_m; m++) {
 			// init oscillator
 			Oscillators[n][m].setup(context);
 			// find z_nm

@@ -49,7 +49,7 @@ export default class App extends React.Component {
 								<Slider
 									ariaLabel='slider controlling the radius of a drum'
 									fidelity={180}
-									value={this.state.radiusOfDrum * 2 - 10}
+									value={this.state.radiusOfDrum * 2 - 20}
 									onChange={(i) => {
 										i = i / 2 + 10
 										Bela.sendBuffer(0, 'float', i)

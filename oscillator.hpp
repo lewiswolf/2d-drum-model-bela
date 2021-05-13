@@ -6,18 +6,18 @@
 class Osc {
 	public:
 		// default constructor & destructor
-		Osc(){};
-		~Osc(){};
+		Osc() { };
+		~Osc() { };
 		// infer sample rate
-		Osc(BelaContext *context){
+		Osc(BelaContext *context) {
 			setup(context);
 		};
-		void setup(BelaContext *context){
+		void setup(BelaContext *context) {
 			s_r = context->audioSampleRate;
 			s_l = 1 / s_r;
 		};
 		// render output
-		float renderWave(float f, float a){
+		float renderWave(float f, float a) {
 			float out = 0;
 			// if the incoming frequency is less than the nyquist frequency
 			if (f < s_r * 0.5) {
