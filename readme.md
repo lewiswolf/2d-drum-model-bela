@@ -1,6 +1,6 @@
-To use this app, install this repo on both a Bela and your personal machine, both of which need to be connected to the same network. Then switch over to your local machine and start the project on http://bela.local before installing the GUI.
+To use this application, download this repo onto a Bela, as well as your personal machine, and connect both devices to the same network. Then, from your personal machine, start the project on http://bela.local before installing the GUI.
 
-As a prerequisite, you will need NodeJS installed, which is available from most established package manages (apt, homebrew, etc...) or you can download it directly online. Then, from inside the project directory, run:
+As a prerequisite, you will need NodeJS installed, which is available from most established package managers (apt, homebrew, etc...) or you can download it directly online. Then, from inside the project directory, run:
 
 ```bash
 cd react-app
