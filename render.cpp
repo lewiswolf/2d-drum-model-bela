@@ -71,7 +71,7 @@ void render(BelaContext *context, void *userData) {
 
 	// prepare synth on mousedown event
 	if (event[0] == 0.0) {
-		// calulcate modal amplitudes relative to radial strike location 
+		// calculate modal amplitudes relative to radial strike location 
 		for (unsigned int n = 0; n < max_n; n++) {
 			for (unsigned int m = 0; m < max_m; m++) {
 				// this is slow, and may be sped up with c++17 cmath functions
