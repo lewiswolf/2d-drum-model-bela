@@ -11,7 +11,7 @@ double bessel(int n, double x) {
 		y - y value for J_n(x)
 	*/
 
-	// calculate J_k(x) for all k < N
+	// calculate J_k(x) for all k < n
 	int maxmx = max(n, (int)x);
 	int n_top = 2 * ((int)((maxmx + 15) / 2 + 1));
 	// vector to store recursion values
@@ -59,7 +59,7 @@ double besselZero(int n, int m) {
 		Much of the code below is shared with the bessel() function declared above,
 		as I could not figure out how to pass arrays between functions.
 		*/
-		// calculate J_k(x) for all k < N
+		// calculate J_k(x) for all k < n
 		int maxmx = max(n, (int)z_nm);
 		int n_top = 2 * ((int)((maxmx + 15) / 2 + 1));
 		// prepare vector to store recursion values
