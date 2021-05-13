@@ -17,7 +17,7 @@ export default class App extends React.Component {
 		super(props)
 		this.state = {
 			belaLoaded: Bela.readyState === 1 ? true : false, // is the Bela ws connected?
-			radiusOfDrum: 100,
+			radiusOfDrum: 35,
 			decayTime: 1000,
 		}
 	}
@@ -30,7 +30,7 @@ export default class App extends React.Component {
 			Bela.sendBuffer(1, 'float', this.state.decayTime)
 		})
 		window.addEventListener('BelaDisconnected', () =>
-			this.setState({ belaLoaded: false, radiusOfDrum: 100, decayTime: 1000 })
+			this.setState({ belaLoaded: false, radiusOfDrum: 35, decayTime: 1000 })
 		)
 	}
 

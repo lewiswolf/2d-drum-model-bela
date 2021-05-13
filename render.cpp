@@ -1,10 +1,11 @@
 #include <Bela.h>
 #include <libraries/Gui/Gui.h>
+#include <libraries/math_neon/math_neon.h>
 #include "oscillator.hpp"
 #include "bessel.hpp"
 
-const short matrixd1 = 4;					// global matrix dim 1
-const short matrixd2 = 8;					// global matrix dim 2
+const short matrixd1 = 4;					// global matrix dim 1 => n
+const short matrixd2 = 8;					// global matrix dim 2 => m
 int t = 0;									// time
 int gDecay;									// global decay length in ms
 float gRadius;								// global radius
@@ -46,8 +47,6 @@ bool setup(BelaContext *context, void *userData) {
 			zeros[n][m] = zero;
 		}
 	}
-	// init modes
-	updateModes(110.0);
 	return true;
 }
 
@@ -60,8 +59,17 @@ void render(BelaContext *context, void *userData) {
 	// rt_printf("size %f \n", R);
 	// rt_printf("decay %f \n", decay);
 	// rt_printf("eventType %f r %f theta %f \n", event[0], event[1], event[2]);
+	
+	// update modes if drum size has changed
+	if (gRadius != R) {
+		gRadius = R;
+		const int t = 2000; 			// tension in N/m
+		const float sigma = 0.26;		// density in kg/m2
+		float d = 2 * 0.01 * gRadius;	// diameter in m
+		updateModes(0.766 * (sqrt(t / sigma) / d));
+	}
 
-	// prepare synth when on mousedown event
+	// prepare synth on mousedown event
 	if (event[0] == 0.0) {
 		// calulcate modal amplitudes relative to radial strike location 
 		for (unsigned int n = 0; n < matrixd1; n++) {
@@ -88,13 +96,13 @@ void render(BelaContext *context, void *userData) {
 				for (unsigned int m = 0; m < matrixd2; m++) {
 					float u_nm = Oscillators[n][m].renderWave(modes[n][m], a) * J[n][m];
 					if (n != 0) {
-						u_nm *= cos(n * gTheta) + sin(n * gTheta);
+						u_nm *= cosf_neon(n * gTheta) + sinf_neon(n * gTheta);
 					}
 					output += u_nm;
 				}
 			}
 			// normalise and decrement
-			output /= matrixd1 * matrixd2 * 16;
+			output /= matrixd1 * matrixd2 * 100;
 			t--;
 		}
 		// write to audio buffer
