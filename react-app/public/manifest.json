@@ -1,7 +1,7 @@
 {
-	"name": "2d-drum-model",
-	"short_name": "2d-drum-model",
-	"description": "2-dimensional, physically modelled drum running on Bela",
+	"name": "2d-drum-model-bela",
+	"short_name": "2d-drum-model-bela",
+	"description": "2-dimensional drum model running on Bela",
 	"theme_color": "#333333",
 	"background_color": "#e5e5e5",
 	"icons": [
