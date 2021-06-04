@@ -26,7 +26,7 @@ export default function sketch(p5) {
 	p5.setup = () => {
 		// create canvas and drum
 		p5.createCanvas(reactProps.width, reactProps.height)
-		drum = Drum({
+		drum = new Drum({
 			x: reactProps.width / 2,
 			y: reactProps.height / 2,
 			diameter: reactProps.width * 0.95,
